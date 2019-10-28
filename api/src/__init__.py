@@ -1,11 +1,24 @@
+import os
 from flask import Flask
-from src.app import create_app
+from src.views.movies import movies_app
+from src.views.actors import actors_app
 from src.error_handlers import error_handlers
-from src.database.models import setup_db
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+
+database_path = os.environ['DATABASE_URL']
 
 app = Flask(__name__)
-setup_db(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = database_path
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
+
+from src.database import setup_db
+setup_db()
+
+from .database.dummy_data import AddDbData
+AddDbData()
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -18,5 +31,9 @@ def after_request(response):
                             'GET,PUT,POST,DELETE,OPTIONS')
     return response
 
-create_app(app)
+@app.route('/')
+def index():
+    return "Welcome to Capstone."
+
+movies_app(app)
 error_handlers(app)
