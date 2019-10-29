@@ -5,9 +5,9 @@ from functools import wraps
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = ''   # TODO eg myapp.auth0.com
+AUTH0_DOMAIN = 'shoot.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = ''   # TODO eg myapp
+API_AUDIENCE = 'https://myappapiidurl'
 
 
 class AuthError(Exception):

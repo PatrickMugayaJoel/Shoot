@@ -7,7 +7,8 @@ from .util import validate_actor
 def actors_app(app):
 
     @app.route('/actors')
-    def actors():
+    @requires_auth('view:actors')
+    def actors(payload):
         actors = []
         for actor in Actor.query.all():
             actors.append(actor.format())
@@ -16,7 +17,8 @@ def actors_app(app):
             }), 200
 
     @app.route('/actors/<int:id>', methods=['DELETE'])
-    def delete_actor(id):
+    @requires_auth('delete:actors')
+    def delete_actor(payload, id):
         actor = Actor.query.filter_by(id=id).first()
 
         if not actor:
@@ -29,7 +31,8 @@ def actors_app(app):
         }), 200
 
     @app.route('/actors', methods=['POST'])
-    def add_actor():
+    @requires_auth('add:actors')
+    def add_actor(payload):
         body = request.get_json()
 
         new_actor = Actor(
@@ -50,7 +53,8 @@ def actors_app(app):
         }), 201
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
-    def update_actor(id):
+    @requires_auth('update:actors')
+    def update_actor(payload, id):
         body = request.get_json()
         actor = Actor.query.filter_by(id=id).first()
 

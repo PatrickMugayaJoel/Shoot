@@ -17,7 +17,7 @@ def error_handlers(app):
         return jsonify({
             "success": False,
             "error": 500,
-            "message": "Internal error and was unable to complete your request."
+            "message": "Internal error. We were unable to complete your request."
         }), 500
 
 
@@ -44,7 +44,7 @@ def error_handlers(app):
         return jsonify({
             "success": False,
             "error": 401,
-            "message": "Authentication error"
+            "message": error.description
         }), 401
 
 

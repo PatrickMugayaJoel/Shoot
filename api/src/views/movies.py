@@ -7,7 +7,8 @@ from .util import validate_movie
 def movies_app(app):
 
     @app.route('/movies')
-    def movies():
+    @requires_auth('view:movies')
+    def movies(payload):
         movies = []
         for movie in Movie.query.all():
             movies.append(movie.format())
@@ -16,7 +17,8 @@ def movies_app(app):
             }), 200
 
     @app.route('/movies/<int:id>', methods=['DELETE'])
-    def delete_movie(id):
+    @requires_auth('delete:movies')
+    def delete_movie(payload, id):
         movie = Movie.query.filter_by(id=id).first()
 
         if not movie:
@@ -29,7 +31,8 @@ def movies_app(app):
         }), 200
 
     @app.route('/movies', methods=['POST'])
-    def add_movie():
+    @requires_auth('add:movies')
+    def add_movie(payload):
         body = request.get_json()
 
         new_movie = Movie(
@@ -49,7 +52,8 @@ def movies_app(app):
         }), 201
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
-    def update_movie(id):
+    @requires_auth('update:movies')
+    def update_movie(payload, id):
         body = request.get_json()
         movie = Movie.query.filter_by(id=id).first()
 
