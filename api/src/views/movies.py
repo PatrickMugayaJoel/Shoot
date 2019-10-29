@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, abort
-from api.src.auth import requires_auth
-from api.src.database.movie import Movie
+from src.auth import requires_auth
+from src.database.movie import Movie
 from .util import validate_movie
 
 
@@ -9,7 +9,7 @@ def movies_app(app):
     @app.route('/movies')
     def movies():
         movies = []
-        for movie in Movie.query.all:
+        for movie in Movie.query.all():
             movies.append(movie.format())
         return jsonify({
             'movies': movies
@@ -49,9 +49,12 @@ def movies_app(app):
         }), 201
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
-    def update_movie():
+    def update_movie(id):
         body = request.get_json()
         movie = Movie.query.filter_by(id=id).first()
+
+        if not movie:
+            abort(404)
 
         movie.title = body.get("title", movie.title)
         movie.release_date = body.get("release_date", movie.release_date)

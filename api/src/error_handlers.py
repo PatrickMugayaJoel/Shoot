@@ -12,6 +12,14 @@ def error_handlers(app):
             "message": "unprocessable"
         }), 422
 
+    @app.errorhandler(500)
+    def server_error(error):
+        return jsonify({
+            "success": False,
+            "error": 500,
+            "message": "Internal error and was unable to complete your request."
+        }), 500
+
 
     @app.errorhandler(404)
     def not_found(error):
@@ -20,6 +28,15 @@ def error_handlers(app):
             "error": 404,
             "message": "resource not found"
         }), 404
+
+
+    @app.errorhandler(405)
+    def invalid_method(error):
+        return jsonify({
+            "success": False,
+            "error": 405,
+            "message": error.description
+        }), 405
 
 
     @app.errorhandler(401)

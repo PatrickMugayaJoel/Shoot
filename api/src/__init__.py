@@ -1,7 +1,5 @@
 import os
 from flask import Flask
-from src.views.movies import movies_app
-from src.views.actors import actors_app
 from src.error_handlers import error_handlers
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -14,6 +12,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+from src.views.movies import movies_app
+from src.views.actors import actors_app
 from src.database import setup_db
 setup_db()
 
@@ -35,5 +35,6 @@ def after_request(response):
 def index():
     return "Welcome to Capstone."
 
+actors_app(app)
 movies_app(app)
 error_handlers(app)

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, abort
-from api.src.auth import requires_auth
-from api.src.database.actor import Actor
+from src.auth import requires_auth
+from src.database.actor import Actor
 from .util import validate_actor
 
 
@@ -9,7 +9,7 @@ def actors_app(app):
     @app.route('/actors')
     def actors():
         actors = []
-        for actor in Actor.query.all:
+        for actor in Actor.query.all():
             actors.append(actor.format())
         return jsonify({
             'actors': actors
@@ -50,9 +50,12 @@ def actors_app(app):
         }), 201
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
-    def update_actor():
+    def update_actor(id):
         body = request.get_json()
         actor = Actor.query.filter_by(id=id).first()
+
+        if not actor:
+            abort(404)
 
         actor.name = body.get("name", actor.name)
         actor.age = body.get("age", actor.age)
