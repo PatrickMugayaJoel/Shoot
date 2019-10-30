@@ -72,4 +72,4 @@ def movies_app(app):
         return jsonify({
             'success': True,
             'movie': movie.format()
-        }), 201
+        }), 200

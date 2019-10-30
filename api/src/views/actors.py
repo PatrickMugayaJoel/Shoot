@@ -49,17 +49,17 @@ def actors_app(app):
         new_actor.insert()
         return jsonify({
             'success': True,
-            'movie': new_actor.format()
+            'actor': new_actor.format()
         }), 201
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('update:actors')
     def update_actor(payload, id):
-        body = request.get_json()
         actor = Actor.query.filter_by(id=id).first()
-
         if not actor:
             abort(404)
+    
+        body = request.get_json()
 
         actor.name = body.get("name", actor.name)
         actor.age = body.get("age", actor.age)
@@ -73,5 +73,5 @@ def actors_app(app):
         actor.update()
         return jsonify({
             'success': True,
-            'movie': actor.format()
-        }), 201
+            'actor': actor.format()
+        }), 200

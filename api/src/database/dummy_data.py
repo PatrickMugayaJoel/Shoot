@@ -10,6 +10,10 @@ class AddDbData():
 
     movie1 = Movie("The Watch men", "2019/08/02")
     movie2 = Movie("Black Panther", "2018/06/11")
+    movie3 = Movie("Thor", "2018/03/14")
+
+    db.session.add(movie3)
+    db.session.commit()
 
     actor2 = Actor("Patrick", 13, "male")
     actor2.movies = [movie1]

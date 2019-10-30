@@ -4,12 +4,16 @@ from src.error_handlers import error_handlers
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
-database_path = os.environ['DATABASE_URL']
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+if os.environ['FLASK_ENV'] == 'testing':
+    database_path = os.environ['TEST_DATABASE_URL']
+else:
+    database_path = os.environ['DATABASE_URL']
+
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = database_path
 db = SQLAlchemy(app)
 
 from src.views.movies import movies_app
