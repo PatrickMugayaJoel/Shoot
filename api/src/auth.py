@@ -26,6 +26,8 @@ def get_token_auth_header():
         abort(401, 'Invalid auth header')
     elif header[0].lower() != 'bearer':
         abort(401, 'Invalid auth header prefix')
+    elif header[1] == 'null':
+        abort(401, 'No access_token was found.')
 
     return header[1]
 

@@ -8,9 +8,9 @@ class AddDbData():
     db.session.add(actor1)
     db.session.commit()
 
-    movie1 = Movie("The Watch men", "2019/08/02")
-    movie2 = Movie("Black Panther", "2018/06/11")
-    movie3 = Movie("Thor", "2018/03/14")
+    movie1 = Movie("The Watch men", "2018-02-02")
+    movie2 = Movie("Black Panther", "2017-06-14")
+    movie3 = Movie("Thor", "2018-10-04")
 
     db.session.add(movie3)
     db.session.commit()

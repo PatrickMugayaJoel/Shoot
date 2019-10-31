@@ -9,11 +9,13 @@ import { AuthService } from './services/auth.service';
 })
 
 export class AppComponent {
-  title:string = 'Shoot index';
+  title:string = 'Shoot Casting Agency';
   loginURL:string;
   token:string;
 
-  constructor(public auth: AuthService) {
+  constructor(
+    public auth: AuthService
+  ) {
     this.loginURL = auth.build_login_link('/');
   }
 
@@ -23,4 +25,9 @@ export class AppComponent {
     this.auth.check_token_fragment();
     this.token = this.auth.token;
   }
+
+  setTitle = (value: string) => {
+    this.title = value;
+  }
+  
 }
