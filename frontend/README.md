@@ -1,27 +1,26 @@
-# Frontend
+# Shoot Frontend App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.14.
+Shoot is a casting agency that creates movies, manages and assigns actors to the movies.
 
-## Development server
+## Pre-requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Install latest version of [Node](https://nodejs.org/en/download/)
+* Create an [Auth0](https://auth0.com/) application with the roles described under Roles & Permissions [here](https://github.com/PatrickMugayaJoel/Shoot/blob/develop/README.md).
+    Fomart permissions as: 'view:actors', 'view:movies', 'delete:actors', 'add:actors', 'update:actors', 'update:movies', 'delete:movies' and 'add:movies'.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* Clone this [repository](https://github.com/PatrickMugayaJoel/Shoot.git).
+* Edit `frontend/environments/environment.ts` to include Auth0 and api settings.
+* Open `frontend` directory in the terminal.
+* Run `npm install` to install dependencies.
+* Run `npm start` to start the angular app.
+* The app will by default be served on port: 4200
 
 ## Author
 
 mugayajoelpatrick@gmail.com
+ 
+## Acknowledgments
+
+* Udacity

@@ -1,3 +1,4 @@
+import os
 import json
 from jose import jwt
 from flask import request, abort
@@ -5,9 +6,9 @@ from functools import wraps
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'shoot.auth0.com'
+AUTH0_DOMAIN = os.environ['AUTH0_DOMAIN']
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://myappapiidurl'
+API_AUDIENCE = os.environ['AUTH0_API_AUDIENCE']
 
 
 class AuthError(Exception):

@@ -22,14 +22,14 @@ def mock_func(x=''):
 patch('src.views.movies.requires_auth', mock_func).start()
 from src.views.movies import movies_app
 
-test_app = Flask(__name__)
-movies_app(test_app)
-error_handlers(test_app)
+myApp = Flask(__name__)
+movies_app(myApp)
+error_handlers(myApp)
 
 class MoviesTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.client = test_app.test_client()
+        self.client = myApp.test_client()
 
     def test_get_movies(self):
         """ Test get movies endpoint """

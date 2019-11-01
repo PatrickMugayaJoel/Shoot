@@ -22,14 +22,14 @@ def mock_func(x=''):
 patch('src.views.actors.requires_auth', mock_func).start()
 from src.views.actors import actors_app
 
-test_app = Flask(__name__)
-actors_app(test_app)
-error_handlers(test_app)
+myApp = Flask(__name__)
+actors_app(myApp)
+error_handlers(myApp)
 
 class ActorsTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.client = test_app.test_client()
+        self.client = myApp.test_client()
 
     def test_get_actors(self):
         """ Test get actors endpoint """
