@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start_ap": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "npm run-script build"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,7 @@
     "@angular/router": "~8.2.11",
     "@auth0/angular-jwt": "^3.0.0",
     "angular2-flash-messages": "^3.0.1",
+    "express": "^4.17.1",
     "jwt-decode": "^2.2.0",
     "ngx-context": "^1.1.1",
     "rxjs": "~6.4.0",

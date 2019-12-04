@@ -2,6 +2,9 @@
 
 Shoot is a casting agency that creates movies, manages and assigns actors to the movies.
 
+## Demo
+[https://shootagency.herokuapp.com/](https://shootagency.herokuapp.com/)
+
 ## Pre-requirements
 
 * Install latest version of [Node](https://nodejs.org/en/download/)
@@ -14,7 +17,7 @@ Shoot is a casting agency that creates movies, manages and assigns actors to the
 * Edit `frontend/environments/environment.ts` to include Auth0 and api settings.
 * Open `frontend` directory in the terminal.
 * Run `npm install` to install dependencies.
-* Run `npm start` to start the angular app.
+* Run `npm start_ap` to start the angular app server.
 * The app will by default be served on port: 4200
 
 ## Author
